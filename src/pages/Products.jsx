@@ -18,7 +18,7 @@ const products = [
     status: 'Live',
     url: 'https://getpodium.netlify.app',
     icon: '✦',
-    image: 'https://source.unsplash.com/800x500/?linkedin,professional,laptop,writing',
+    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80',
   },
   {
     name: 'BrandGuard',
@@ -34,7 +34,7 @@ const products = [
     tag: 'Brand Protection',
     status: 'Coming Soon',
     icon: '◆',
-    image: 'https://source.unsplash.com/800x500/?security,shield,protection,digital',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
   },
   {
     name: 'SmartAgentPro.ai',
@@ -51,7 +51,7 @@ const products = [
     status: 'Live',
     url: 'https://smartagentpro.ai',
     icon: '●',
-    image: 'https://source.unsplash.com/800x500/?customer-service,contact-center,headset,AI',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80',
   },
 ]
 
