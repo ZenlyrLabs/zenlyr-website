@@ -19,6 +19,7 @@ const products = [
     name: 'SmartAgentPro.ai',
     desc: 'AI-driven contact center solution. Transform customer interactions with intelligent agents that understand, learn, and deliver results.',
     tag: 'Contact Center AI',
+    url: 'https://smartagentpro.ai',
     icon: '●',
   },
 ]

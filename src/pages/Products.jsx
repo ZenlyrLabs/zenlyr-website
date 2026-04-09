@@ -45,7 +45,8 @@ const products = [
       'Seamless human handoff',
     ],
     tag: 'Contact Center AI',
-    status: 'Coming Soon',
+    status: 'Live',
+    url: 'https://smartagentpro.ai',
     icon: '●',
   },
 ]
