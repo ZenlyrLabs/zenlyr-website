@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import LogoMark from './LogoMark'
 import './Footer.css'
 
 export default function Footer() {
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <span className="logo-icon">Z</span>
+              <LogoMark size={36} />
               <span className="logo-text">Zenlyr Labs</span>
             </Link>
             <p className="footer-tagline">

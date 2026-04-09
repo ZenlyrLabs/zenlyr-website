@@ -27,18 +27,8 @@
   text-decoration: none;
 }
 
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--bg-primary);
+.logo-mark {
+  flex-shrink: 0;
 }
 
 .logo-text {

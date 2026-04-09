@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import LogoMark from './LogoMark'
 import './Navbar.css'
 
 const navLinks = [
@@ -17,7 +18,7 @@ export default function Navbar() {
     <header className="navbar">
       <div className="navbar-inner">
         <Link to="/" className="navbar-logo" onClick={() => setMobileOpen(false)}>
-          <span className="logo-icon">Z</span>
+          <LogoMark size={36} />
           <span className="logo-text">Zenlyr Labs</span>
         </Link>
 
