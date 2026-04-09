@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Products.css'
 
@@ -17,6 +18,7 @@ const products = [
     status: 'Live',
     url: 'https://getpodium.netlify.app',
     icon: '✦',
+    image: 'https://source.unsplash.com/800x500/?linkedin,professional,laptop,writing',
   },
   {
     name: 'BrandGuard',
@@ -32,6 +34,7 @@ const products = [
     tag: 'Brand Protection',
     status: 'Coming Soon',
     icon: '◆',
+    image: 'https://source.unsplash.com/800x500/?security,shield,protection,digital',
   },
   {
     name: 'SmartAgentPro.ai',
@@ -48,8 +51,42 @@ const products = [
     status: 'Live',
     url: 'https://smartagentpro.ai',
     icon: '●',
+    image: 'https://source.unsplash.com/800x500/?customer-service,contact-center,headset,AI',
   },
 ]
+
+function ProductMockup({ product }) {
+  const [imgFailed, setImgFailed] = useState(false)
+
+  return (
+    <div className="product-mockup">
+      <div className="mockup-header">
+        <span className="dot" />
+        <span className="dot" />
+        <span className="dot" />
+      </div>
+      <div className="mockup-body">
+        {!imgFailed ? (
+          <>
+            <img
+              src={product.image}
+              alt={`${product.name} preview`}
+              className="mockup-image"
+              loading="lazy"
+              onError={() => setImgFailed(true)}
+            />
+            <div className="mockup-overlay" />
+          </>
+        ) : (
+          <div className="mockup-fallback">
+            <div className="mockup-icon">{product.icon}</div>
+            <div className="mockup-name">{product.name}</div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
 
 export default function Products() {
   return (
@@ -96,17 +133,7 @@ export default function Products() {
                 )}
               </div>
               <div className="product-detail-visual">
-                <div className="product-mockup">
-                  <div className="mockup-header">
-                    <span className="dot" />
-                    <span className="dot" />
-                    <span className="dot" />
-                  </div>
-                  <div className="mockup-body">
-                    <div className="mockup-icon">{product.icon}</div>
-                    <div className="mockup-name">{product.name}</div>
-                  </div>
-                </div>
+                <ProductMockup product={product} />
               </div>
             </div>
           ))}
