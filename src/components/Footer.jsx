@@ -29,6 +29,7 @@ export default function Footer() {
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
               <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
             </div>
           </div>
         </div>
