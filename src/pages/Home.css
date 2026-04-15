@@ -164,6 +164,25 @@
   padding: 0 12px;
 }
 
+.marquee-product {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.marquee-brand {
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.marquee-descriptor {
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+  font-weight: 500;
+}
+
 .marquee-dot {
   color: var(--gold);
   margin-left: 12px;

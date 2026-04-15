@@ -29,8 +29,12 @@ const products = [
 ]
 
 const marqueeItems = [
-  'Podium', 'BrandGuard', 'SmartAgentPro', 'AI-Powered',
-  'Built for Professionals', 'Zenlyr Labs',
+  { text: 'Podium', type: 'product' },
+  { text: 'AI-Powered', type: 'descriptor' },
+  { text: 'BrandGuard', type: 'product' },
+  { text: 'Built for Professionals', type: 'descriptor' },
+  { text: 'SmartAgentPro', type: 'product' },
+  { text: 'Zenlyr Labs', type: 'brand' },
 ]
 
 const stats = [
@@ -166,8 +170,8 @@ function HeroParticles() {
 /* ── Marquee ───────────────────────────────────── */
 function Marquee() {
   const row = marqueeItems.map((item, i) => (
-    <span key={i} className="marquee-item">
-      {item} <span className="marquee-dot">·</span>
+    <span key={i} className={`marquee-item marquee-${item.type}`}>
+      {item.text} <span className="marquee-dot">·</span>
     </span>
   ))
 
