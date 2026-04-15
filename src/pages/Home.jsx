@@ -9,14 +9,14 @@ const products = [
     tag: 'Content Creation',
     url: 'https://getpodium.netlify.app',
     icon: '✦',
-    gradient: 'linear-gradient(135deg, rgba(200,168,75,0.15) 0%, rgba(200,168,75,0.03) 60%, transparent 100%)',
+    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80',
   },
   {
     name: 'BrandGuard',
     desc: 'Intelligent brand protection platform. Monitor, detect, and respond to brand threats across the digital landscape in real time.',
     tag: 'Brand Protection',
     icon: '◆',
-    gradient: 'linear-gradient(135deg, rgba(100,140,200,0.12) 0%, rgba(200,168,75,0.05) 60%, transparent 100%)',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80',
   },
   {
     name: 'SmartAgentPro.ai',
@@ -24,7 +24,7 @@ const products = [
     tag: 'Contact Center AI',
     url: 'https://smartagentpro.ai',
     icon: '●',
-    gradient: 'linear-gradient(135deg, rgba(160,120,200,0.12) 0%, rgba(200,168,75,0.05) 60%, transparent 100%)',
+    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80',
   },
 ]
 
@@ -237,9 +237,14 @@ export default function Home() {
           <div className="product-grid">
             {products.map((p, i) => (
               <div key={p.name} className={`product-card reveal reveal-d${i + 1}`}>
-                <div className="card-gradient-visual" style={{ background: p.gradient }}>
-                  <div className="card-visual-icon">{p.icon}</div>
-                  <div className="card-visual-ring" />
+                <div className="card-photo-wrap">
+                  <img
+                    src={p.image}
+                    alt={`${p.name} professional`}
+                    className="card-photo"
+                    loading="lazy"
+                  />
+                  <div className="card-photo-overlay" />
                 </div>
                 <div className="card-icon">{p.icon}</div>
                 <span className="card-tag">{p.tag}</span>
@@ -276,7 +281,15 @@ export default function Home() {
               Read our story <span>→</span>
             </Link>
           </div>
-          <div className="about-visual">
+          <div className="about-visual reveal">
+            <div className="about-photo-frame">
+              <img
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+                alt="Professional working at desk"
+                className="about-photo"
+                loading="lazy"
+              />
+            </div>
             <div className="visual-grid">
               {stats.map((s, i) => (
                 <StatBlock key={s.label} stat={s} className={`v${i + 1}`} />
