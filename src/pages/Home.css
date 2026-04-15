@@ -11,7 +11,58 @@
   max-width: 800px;
   margin: 0 auto;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+/* Particles canvas */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Slow-shifting gradient mesh */
+.hero-gradient-mesh {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 50% at 20% 30%, rgba(200,168,75,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 45% at 80% 60%, rgba(200,168,75,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(160,120,200,0.04) 0%, transparent 70%);
+  animation: meshDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes meshDrift {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  33%  { transform: translate(3%, -2%) rotate(1deg); }
+  66%  { transform: translate(-2%, 3%) rotate(-0.5deg); }
+  100% { transform: translate(1%, -1%) rotate(0.5deg); }
+}
+
+/* Staggered hero fade-in */
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFadeIn 0.8s var(--ease) forwards;
+}
+
+.hero-stagger.s1 { animation-delay: 0.1s; }
+.hero-stagger.s2 { animation-delay: 0.25s; }
+.hero-stagger.s3 { animation-delay: 0.4s; }
+.hero-stagger.s4 { animation-delay: 0.55s; }
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-badge {
@@ -62,6 +113,67 @@
   height: 600px;
   background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Marquee Ticker ────────────────────────────── */
+
+.marquee-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  padding: 16px 0;
+  position: relative;
+}
+
+.marquee-strip::before,
+.marquee-strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-strip::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-secondary), transparent);
+}
+
+.marquee-strip::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg-secondary), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.marquee-item {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding: 0 12px;
+}
+
+.marquee-dot {
+  color: var(--gold);
+  margin-left: 12px;
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ── Buttons ───────────────────────────────────── */
@@ -144,6 +256,24 @@
   line-height: 1.7;
 }
 
+/* ── Scroll Reveal ─────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for product cards */
+.reveal.reveal-d1 { transition-delay: 0s; }
+.reveal.reveal-d2 { transition-delay: 0.12s; }
+.reveal.reveal-d3 { transition-delay: 0.24s; }
+
 /* ── Products Showcase ─────────────────────────── */
 
 .showcase {
@@ -168,24 +298,65 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 36px 28px;
+  padding: 0 0 28px;
   text-align: left;
-  transition: all 0.35s var(--ease);
+  transition: all 0.4s var(--ease);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .product-card:hover {
-  border-color: var(--border-hover);
+  border-color: rgba(200, 168, 75, 0.3);
   background: var(--bg-card-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(200, 168, 75, 0.08);
+}
+
+/* Gradient visual illustration at top of card */
+.card-gradient-visual {
+  height: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-visual-icon {
+  font-size: 28px;
+  color: var(--gold);
+  opacity: 0.35;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.3s, transform 0.4s var(--ease);
+}
+
+.product-card:hover .card-visual-icon {
+  opacity: 0.6;
+  transform: scale(1.15);
+}
+
+.card-visual-ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 168, 75, 0.15);
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%      { transform: scale(1.5); opacity: 0; }
 }
 
 .card-icon {
   font-size: 24px;
   color: var(--gold);
-  margin-bottom: 20px;
+  margin: 20px 28px 16px;
 }
 
 .card-tag {
@@ -194,13 +365,13 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  margin-bottom: 12px;
+  margin: 0 28px 12px;
 }
 
 .product-card h3 {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin: 0 28px 12px;
   letter-spacing: -0.01em;
 }
 
@@ -209,13 +380,14 @@
   line-height: 1.7;
   color: var(--text-secondary);
   flex: 1;
+  margin: 0 28px;
 }
 
 .card-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 24px;
+  margin: 24px 28px 0;
   font-size: 14px;
   font-weight: 600;
   color: var(--gold);
@@ -279,11 +451,12 @@
   border-radius: 16px;
   padding: 32px 24px;
   text-align: center;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .v-block:hover {
-  border-color: rgba(200, 168, 75, 0.2);
+  border-color: rgba(200, 168, 75, 0.25);
+  box-shadow: 0 0 30px rgba(200, 168, 75, 0.06);
 }
 
 .v-block.v3 {
@@ -381,6 +554,12 @@
   .cta {
     padding: 72px 24px;
   }
+
+  .reveal.reveal-d1,
+  .reveal.reveal-d2,
+  .reveal.reveal-d3 {
+    transition-delay: 0s;
+  }
 }
 
 @media (max-width: 640px) {
@@ -415,5 +594,9 @@
 
   .v-block.v3 {
     grid-column: auto;
+  }
+
+  .card-gradient-visual {
+    height: 80px;
   }
 }
